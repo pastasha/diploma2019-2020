@@ -1,1 +1,1 @@
-export const SET_OBJS = 'SET_OBJS'
+export const SET_PICTURES = 'SET_PICTURES';

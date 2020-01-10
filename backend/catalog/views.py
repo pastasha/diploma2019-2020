@@ -10,7 +10,7 @@ from .serializers import picture, diploma, exhibition, methodical, \
 
 class PictureWS(viewsets.ModelViewSet):
     serializer_class = picture
-    queryset = Picture.objects.all()
+    queryset = Picture.objects.all().order_by('-CreationDate')
 
 
 class photo_galleryWS(viewsets.ModelViewSet):

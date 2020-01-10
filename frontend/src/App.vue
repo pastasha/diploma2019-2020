@@ -1,26 +1,31 @@
-<template lang = "pug">
-  #app
-      section.container.grid-960
-        .columns
-          .column.col-2
-          .column.col-8.col-md-12
-            header.text-center
-              h2 Create picture?
-            create-obj
-            header.text-center
-              h2 List of pictures
-            object-list
-          .column.col-2
+<template>
+    <div id="app">
+        <div class="nav-item">
+            <router-link to="/" class="nav-link"> <img src="@/assets/logo.png" width="300" height="300"> </router-link>
+        </div>
+        <div class="nav-item">
+            <router-link to="/about-author" class="nav-link"> ОБ АВТОРЕ </router-link>
+        </div>
+        <div class="nav-item">
+            <router-link to="/gallery" class="nav-link"> ГАЛЕРЕЯ </router-link>
+        </div>
+        <div class="nav-item">
+            <router-link to="/exhibitions" class="nav-link"> ВЫСТАВКИ </router-link>
+        </div>
+        <div class="nav-item">
+            <router-link to="/feedback" class="nav-link"> ОБРАТНАЯ СВЯЗЬ </router-link>
+        </div>
+
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-import  ObjectList from './components/ObjectList'
-
 export default {
-  name: 'app',
-  components: {
-    'object-list': ObjectList
-  }
+    data(){
+        return{
+        }
+    }
 }
 </script>
 
@@ -30,7 +35,6 @@ export default {
     body {
         font-family: "Work Sans", "Segoe UI", "Helvetica Neue", sans-serif;
     }
-
     h1, h2, h3, h4, h5, h6 {
         font-family: "Eczar", sans-serif;
     }

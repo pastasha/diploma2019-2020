@@ -1,16 +1,8 @@
 import {HTTP} from "./common";
 
-export const Object = {
-    create (config) {         //TODO delete it!
-        return HTTP.post('/objects/', config).then(response => {
-            return response.data
-        })
-    },
-    delete(note){             //TODO delete it!
-        return HTTP.delete('/objects/${object.id}/')
-    },
+export const Picture = {
     list (){
-        return HTTP.get('/objects/').then(response => {
+        return HTTP.get('/pictures/').then(response => {
             return response.data
         })
     }

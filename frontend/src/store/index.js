@@ -1,32 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {Object} from '../api/actions'
-import {SET_OBJS} from "./mutation-types";
+import { Picture } from '../api/pictures'
+import {SET_PICTURES} from "./mutation-types";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-//state
 const state = {
-    objects: [] //list of objects
-}
+    pictures: [] //list of objects
+};
 
 const getters = {
-    objects: state => state.objects // getting a list of objects
-}
+    pictures: state => state.pictures // getting a list of objects
+};
 
 const mutations = {
-    [SET_OBJS] (state, {objects}){
-        state.objects = objects
+    [SET_PICTURES] (state, {pictures}){
+        state.pictures = pictures
     }
-}
+};
 
 const actions = {
-  getObjs ({ commit }) {
-    Object.list().then(objects => {
-      commit(SET_OBJS, { objects })
+  getPictures ({ commit }) {
+    Picture.list().then(pictures => {
+      commit(SET_PICTURES, { pictures })
     })
   }
-}
+};
 
 export default new Vuex.Store({
   state,
