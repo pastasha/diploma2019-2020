@@ -20,7 +20,7 @@ const mutations = {
 };
 
 const actions = {
-  getPictures ({ commit }) {
+  getPictures ({ commit })  {
     Picture.list().then(pictures => {
       commit(SET_PICTURES, { pictures })
     })
