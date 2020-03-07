@@ -1,0 +1,55 @@
+Подзапросы. Лекция 2 БД
+
+1. Вывести студентов у которых средний балл по физике больше среднего балла по математике
+
+select fio from stud
+inner join marks using(nzach)
+where 
+(select avg(mark) from marks
+inner join predmet using(idpred)
+where stud.nzach = marks.nzach and name = 'Maths') >
+(select avg(mark) from marks
+inner join predmet using(idpred)
+where stud.nzach = marks.nzach and name = 'Physics')
+group by fio; 
+
+
+2. Вывести группу и кол-во студентов в ней у которых средний балл выше трех
+
+select name, count(fio) from grups
+inner join stud using(idgr)
+where 
+(select avg(mark) from marks
+where stud.nzach = marks.nzach) > 3
+group by name; 
+
+
+3. Вывести студентов у которых нет оценок более чем по одному предмету
+
+4. Вывести предметы по которым более чем в двух группах средний балл ниже 3
+
+select name from predmet
+where 3 > (select avg(mark) from marks 
+where predmet.idpred = marks.idpred group by idpred;
+
+
+5. Вывести студента у которого все предметы со средней оценкой выше чем 3.5
+
+select fio from stud
+where 3.5 < all (select avg(mark) from marks 
+where stud.nzach = marks.nzach group by idpred);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,13 +10,17 @@ import Feedback from "./components/Feedback";
 import Theses from "./components/Theses";
 import Press from "./components/Press";
 import MethodicalWork from "./components/MethodicalWork";
+import NoteList from "./components/NoteList";
+import Picture from "./components/Picture";
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Main},
   { path: '/about-author', component: Author},
+  { path: '/note-list', component: NoteList},
   { path: '/gallery', component: Gallery},
+  { path: '/picture', component: Picture},
   { path: '/exhibitions', component: Exhibitions},
   { path: '/theses', component: Theses},
   { path: '/press', component: Press},
@@ -28,6 +32,8 @@ const router = new VueRouter({
   routes,
   mode: 'history'
 });
+
+Vue.config.productionTip = false;
 
 new Vue({
   store,

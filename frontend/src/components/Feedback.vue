@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        Feedback
+        <div class="body">
+            <h1>ОБРАТНАЯ СВЯЗЬ</h1>
+        </div>
     </div>
 </template>
 

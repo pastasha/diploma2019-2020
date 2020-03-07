@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        Author's bio
+        <div class="body">
+            <h1>БОГАЙЧУК ЛЮДМИЛА</h1>
+        </div>
     </div>
 </template>
 

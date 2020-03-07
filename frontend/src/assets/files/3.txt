@@ -1,0 +1,66 @@
+1. Вывести студентов у которых средний балл по математике за осень выше среднего балла по математике за весну.
+
+select fio from stud 
+where (
+select avg(mark) from marks
+where stud.nzach = marks.nzach 
+and marks.idpred = 1 
+and (month(marks.data) > 8 and month(marks.data) < 12) >
+(select avg(mark) from marks
+where stud.nzach = marks.nzach 
+and marks.idpred = 1 
+and (month(marks.data) > 2 and month(marks.data) < 6)))
+group by fio;
+
+
+2. Вывести название группы и количество студентов в этой группе у которых нет оценки по физике.
+
+select name, count(fio) from grups
+inner join stud using(idgr)
+where grups.idgr = stud.idgr and fio not in (
+select fio from stud
+inner join marks using(nzach)
+where stud.nzach  = marks.nzach
+and marks.idpred = 2
+group by fio)
+group by name; 
+
+
+4. Вывести студентов у которых нет оценки 4.
+
+select fio from stud
+inner join marks using(nzach)
+where marks.nzach = stud.nzach and fio not in (
+select fio from stud
+inner join marks using(nzach)
+where stud.nzach  = marks.nzach
+and marks.mark = 4)
+group by fio;
+
+
+5. Вывести преподавателей которые поставили больше 1/8 от всего количества оценок.
+
+select fio from prep
+where (
+select count(mark) from marks
+where prep.idprep = marks.idprep) >
+(select count(mark) from marks)*1/8
+group by fio;
+
+
+3. Вывести предметы по которым все студенты которые получали оценки по этому предмету имеют средний балл выше 3.
+
+select name from predmet 
+where (
+select avg(mark) from marks
+inner join stud using(nzach)
+where predmet.idpred = marks.idpred) > 3
+group by name;
+
+
+
+
+
+
+
+

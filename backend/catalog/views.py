@@ -2,10 +2,10 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 
 from .models import Picture, Diploma, Exhibition, Methodical, \
-    photoGallery, photoDiploma, Technique
+    photoGallery, photoDiploma, Technique, Press
 
 from .serializers import picture, diploma, exhibition, methodical, \
-    photo_gallery, photo_diploma, technique
+    photo_gallery, photo_diploma, technique, press
 
 
 class PictureWS(viewsets.ModelViewSet):
@@ -36,6 +36,11 @@ class ExhibitionWS(viewsets.ModelViewSet):
 class MethodicalWS(viewsets.ModelViewSet):
     serializer_class = methodical
     queryset = Methodical.objects.all()
+
+
+class PressWS(viewsets.ModelViewSet):
+    serializer_class = press
+    queryset = Press.objects.all()
 
 
 class TechniqueWS(viewsets.ModelViewSet):

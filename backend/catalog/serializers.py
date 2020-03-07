@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Picture, Diploma, Exhibition, Methodical, \
-    photoGallery, photoDiploma, Technique
+    photoGallery, photoDiploma, Technique, Press
 
 
 class picture(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class picture(serializers.ModelSerializer):
 class photo_gallery(serializers.ModelSerializer):
     class Meta:
         model = photoGallery
-        fields = ('image', 'Path')
+        fields = ('image')#, 'Path')
 
 
 class diploma(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class diploma(serializers.ModelSerializer):
 class photo_diploma(serializers.ModelSerializer):
     class Meta:
         model = photoDiploma
-        fields = ('image', 'Path')
+        fields = ('image')#, 'Path')
 
 
 class exhibition(serializers.ModelSerializer):
@@ -39,6 +39,12 @@ class exhibition(serializers.ModelSerializer):
 class methodical(serializers.ModelSerializer):
     class Meta:
         model = Methodical
+        fields = ('Name', 'Preview', 'Author', 'CreationDate', 'Path')
+
+
+class press(serializers.ModelSerializer):
+    class Meta:
+        model = Press
         fields = ('Name', 'Preview', 'Author', 'CreationDate', 'Path')
 
 

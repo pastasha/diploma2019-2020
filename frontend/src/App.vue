@@ -1,7 +1,7 @@
 <template>
 
     <div id="app">
-        <div class="body">
+        <div class="big-body">
 
             <div class="nav-item">
                 <router-link to="/"> <img class="logo-link" src="@/assets/logo.png"> </router-link>
@@ -9,18 +9,20 @@
 
             <div class="nav-items">
                 <div class="nav-item">
-                    <router-link to="/about-author" class="nav-link"><p> ОБ АВТОРЕ </p></router-link>
+                    <router-link to="/about-author" class="nav-link"><h2> ОБ АВТОРЕ </h2></router-link>
                 </div>
                 <div class="nav-item">
-                    <router-link to="/gallery" class="nav-link"><p> ГАЛЕРЕЯ </p></router-link>
+                    <router-link to="/gallery" class="nav-link"><h2> ГАЛЕРЕЯ </h2></router-link>
                 </div>
                 <div class="nav-item">
-                    <router-link to="/exhibitions" class="nav-link"><p> ВЫСТАВКИ </p></router-link>
+                    <router-link to="/exhibitions" class="nav-link"><h2> ВЫСТАВКИ </h2></router-link>
                 </div>
                 <div class="nav-item">
-                    <router-link to="/feedback" class="nav-link"><p> ОБРАТНАЯ СВЯЗЬ </p></router-link>
+                    <router-link to="/feedback" class="nav-link"><h2> ОБРАТНАЯ СВЯЗЬ </h2></router-link>
                 </div>
             </div>
+
+            <router-view></router-view>
 
             <div class="side-panel-with-links">
 
@@ -29,7 +31,7 @@
                         <div class="side-panel-links">
 
                             <div class="open-menu">
-                                <p class="open-menu-label">меню</p>
+                                <h2 class="open-menu-label">меню</h2>
                                 <img class="close-menu" v-on:click="state = 'not pressed'" src="@/assets/close-img.png" height="32px" width="38px">
                             </div>
 
@@ -49,18 +51,18 @@
                                 <router-link to="/press"><p class="s-p-link">ПРЕССА</p></router-link>
                             </div>
                             <div class="s-p-item">
-                                <router-link to="/methodical-works"><p class="s-p-link">МЕТОДИЧЕСКИЕ РАБОТЫ</p></router-link>
+                                <router-link to="/methodical-works"><h2 class="s-p-link">МЕТОДИЧЕСКИЕ РАБОТЫ</h2></router-link>
                             </div>
                             <div class="s-p-item">
                                 <router-link to="/feedback"><p class="s-p-link">ОБРАТНАЯ СВЯЗЬ</p></router-link>
                             </div>
 
                             <div class="d-s-p-info">
-                                <p class="s-p-info"><br>Телефон:<br>+380996477383</p>
-                                <p class="s-p-info">Email:<br>papastasha@gmail.com<br>polinicus@gmail.com</p>
+                                <h2 class="s-p-info"><br>Телефон:<br>+380996477383</h2>
+                                <h2 class="s-p-info">Email:<br>papastasha@gmail.com<br>polinicus@gmail.com</h2>
                             </div>
 
-                            <p class="developer">2019@MERPH</p>
+                            <h2 class="developer">2019@<a href="https://github.com/pastasha">MERPH</a></h2>
                         </div>
                     </div>
 
@@ -80,7 +82,7 @@
 
                         <div class="m" v-if="state === 'not pressed'"></div>
                         <div class="menu" v-if="state === 'not pressed'">
-                            <p class="menu-label">меню</p>
+                            <h2 class="menu-label">меню</h2>
                             <img class="menu-img" v-on:click="state = 'pressed'" v-if="state === 'not pressed'" src="@/assets/menu-img.png" height="45px" width="45px">
                         </div>
 
@@ -89,7 +91,7 @@
                 </div>
             </div>
 
-            <router-view></router-view>
+
 
         </div>
     </div>
@@ -114,7 +116,7 @@
 </script>
 
 <style>
-    .body{
+    .big-body{
         position: absolute;
         top: 0;
         left: 5%;
@@ -152,7 +154,7 @@
         height: 25%;
     }
 
-    p{
+    h2{
         color: #707070;
         font: bold 125% Yu Gothic;
     }

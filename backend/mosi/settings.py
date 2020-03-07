@@ -15,10 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
+MEDIA_DIR = "C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/"#os.path.join(BASE_DIR,'media')
 
 MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
+MEDIA_URL = "C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'rest_framework',
     'corsheaders',
+    'debug_toolbar',
 ]
+
+INTERNAL_IPS = ('127.0.0.1', 'localhost')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'mosi.urls'

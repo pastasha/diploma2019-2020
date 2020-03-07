@@ -2,8 +2,8 @@ import {HTTP} from "./common";
 
 export const Picture = {
     list (){
-        return HTTP.get('/pictures/').then(response => {
+        return HTTP.get('/picture/').then(response => {
             return response.data
         })
     }
-}
+};
