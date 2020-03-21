@@ -12,15 +12,21 @@ import Press from "./components/Press";
 import MethodicalWork from "./components/MethodicalWork";
 import NoteList from "./components/NoteList";
 import Picture from "./components/Picture";
+import MainAqua from "./components/MainAqua";
+import MainBatik from "./components/MainBatik";
+import MainSha from "./components/MainSha";
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Main},
+  { path: '/aqua-page', component: MainAqua},
+  { path: '/batik-page', component: MainBatik},
+  { path: '/sha-page', component: MainSha},
   { path: '/about-author', component: Author},
   { path: '/note-list', component: NoteList},
   { path: '/gallery', component: Gallery},
-  { path: '/picture', component: Picture},
+  { path: '/picture', name: 'Picture', component: Picture},
   { path: '/exhibitions', component: Exhibitions},
   { path: '/theses', component: Theses},
   { path: '/press', component: Press},

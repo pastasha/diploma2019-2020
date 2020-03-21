@@ -1,5 +1,7 @@
 <template>
-    <div id="app">
+    <div class="big-body" id="app">
+        <NavItems></NavItems>
+
         <div class="body">
             <h1>ДИПЛОМНЫЕ РАБОТЫ </h1>
 
@@ -11,36 +13,54 @@
             </div>
 
             <div class="container-for-content">
-                <div class="content">
-                <div v-for="met in diplomas" :key="met.id">
-                    <div class="methodical">
-                        <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(125))" :alt="met.Preview.slice(114)" width="320">
-                        <div class="methodical-description">
-                            <p class="methodical-title">{{met.Name}}</p>
-                            <p class="methodical-author-and-year">{{met.Author}}</p>
-                            <p class="methodical-author-and-year">{{met.CreationDate}}</p>
-                        </div>
+                <div class="content-e">
+                    <div v-for="diploma in diplomas" :key="diploma.id">
+                        <div class="exhibition">
+                            <img class="exhibition-preview" v-bind:src="require('@/assets/pics/preview/' + diploma.Preview.slice(118))" :alt="diploma.Preview.slice(125)" width="440" height="440">
+                            <div class="diploma-description">
+                                <h4>{{diploma.Title}}</h4>
+                                <p>{{diploma.ReleaseYear}}</p>
 
-                        <div class="file-container">
-                            <img class="act-with-file" src="@/assets/read.png">
+                                <p class="object-technique" v-if="diploma.IdTechnique === 1">БАТИК</p>
+                                <p class="object-technique" v-else-if="diploma.IdTechnique === 2">ШАРФ</p>
+                                <p class="object-technique" v-else-if="diploma.IdTechnique === 3">АКВАРЕЛЬ</p>
+                                <p class="object-technique" v-else-if="diploma.IdTechnique === 4">ЖИВОПИСЬ</p>
 
-                            <a download v-bind:href="require('@/assets/files/' + met.Path.slice(118))" :alt="met.Path.slice(118)">
-                                <img class="act-with-file" src="@/assets/download.png">
-                            </a>
+
+                                <div class="object-size-container">
+                                    <p class="object-size">{{diploma.SizeHeight}} СМ х</p>
+                                    <p class="object-size">{{diploma.SizeWidth}} СМ</p>
+                                </div>
+
+                                Студент:
+                                <p>{{diploma.StudentsFIO}}</p>
+                                Куратор:
+                                <p>{{diploma.Description}}</p>
+
+                                <!-- <div class="file-container-e">
+                                    <img class="file" src="@/assets/read.png">
+                                    <img class="file" src="@/assets/download.png">
+                                </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
+
 
         </div>
+
+        <SidePanel></SidePanel>
     </div>
 </template>
 
 <script>
+    import SidePanel from "./SidePanel";
+    import NavItems from "./NavItems";
     import { mapGetters } from 'vuex'
     export default {
         name: 'diplomas',
+        components: {SidePanel, NavItems},
         computed: mapGetters(['diplomas']),
         beforeMount () {
             this.$store.dispatch('getDiplomas')
@@ -56,62 +76,16 @@
 </script>
 
 <style scoped>
-    .file-container{
+    .diploma-description{
         position: absolute;
-        right: 0;
-        top: 0;
-        margin-top: 70px;
-        margin-right: 50px;
-    }
-
-    .act-with-file{
-        position: relative;
-        height: 60px;
-        width: 60px;
-        margin-left: 50px;
-    }
-
-    .methodical-list{
-        display: grid;
-        grid-template-rows: 300px;
-        top: 18%;
-        bottom: 0;
-    }
-
-    .methodical-title{
-        font: lighter 30pt Yu Gothic;
-        margin-bottom: 10px;
-    }
-
-    .methodical-author-and-year{
-        font: lighter 15pt Yu Gothic;
-        margin-left: 10px;
-        margin-bottom: 10px;
-    }
-
-    .methodical-description{
-        position: absolute;
-        margin: 20px;
-        left: 200px;
-    }
-
-    .methodical-preview{
+        display: inline-block;
+        width: 500px;
+        height: 450px;
+        right: -10px;
+        top: 50px;
+        text-align: center;
+        line-height: 2;
         margin: 30px;
-        position: absolute;
-        height: 140px;
-        width: 140px;
-    }
-
-    .methodical{
-        display: grid;
-        left: 240px;
-        right: 240px;
-        top: 18%;
-        bottom: 0;
-        width: 1100px;
-        height: 200px;
-        box-shadow: 0 0 15px #9b9b9b;
-        position: relative;
     }
 
     .filter-by-year{

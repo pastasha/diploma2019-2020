@@ -3,11 +3,17 @@ from .models import Picture, Diploma, Exhibition, Methodical, \
     photoGallery, photoDiploma, Technique, Press
 
 
+class methodical(serializers.ModelSerializer):
+    class Meta:
+        model = Methodical
+        fields = ('Name', 'Preview', 'Author', 'CreationDate', 'Path')
+
+
 class picture(serializers.ModelSerializer):
     class Meta:
         model = Picture
         fields = ('Title', 'Preview', 'CreationDate', 'IdTechnique', 'SizeHeight',
-                  'SizeWidth', 'Materials', 'Description', 'status')
+                  'SizeWidth', 'Materials', 'Description', 'Hover', 'status')
 
 
 class photo_gallery(serializers.ModelSerializer):
@@ -34,12 +40,6 @@ class exhibition(serializers.ModelSerializer):
         model = Exhibition
         fields = ('Name', 'CreationDate', 'Preview', 'Place', 'Adress',
                   'Managers', 'Curator', 'Catalog')
-
-
-class methodical(serializers.ModelSerializer):
-    class Meta:
-        model = Methodical
-        fields = ('Name', 'Preview', 'Author', 'CreationDate', 'Path')
 
 
 class press(serializers.ModelSerializer):

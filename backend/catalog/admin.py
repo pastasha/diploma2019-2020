@@ -18,3 +18,4 @@ admin.site.register(Methodical)
 admin.site.register(Press)
 admin.site.register(photoDiploma)
 admin.site.register(photoGallery)
+

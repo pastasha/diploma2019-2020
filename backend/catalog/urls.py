@@ -14,3 +14,4 @@ router.register(r'photo-diploma', photo_diplomaWS, basename='pd')
 router.register(r'technique', TechniqueWS, basename='technique')
 
 urlpatterns = router.urls
+

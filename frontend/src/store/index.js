@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { Note } from '../api/notes'
-import {Methodical} from "../api/methodical-works";
+import { Methodical } from "../api/methodical-works";
 import { Diplomas } from "../api/diplomas";
 import { Exhibitions } from '../api/exhibitions'
 import { Press } from "../api/press";

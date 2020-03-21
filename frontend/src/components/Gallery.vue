@@ -1,30 +1,48 @@
 <template>
-    <div id="app">
+    <div class="big-body" id="app">
+        <NavItems></NavItems>
 
         <div class="body">
             <h1>ГАЛЕРЕЯ</h1>
 
             <div class="filters">
-                <p v-on:click="filter = 3" class="filter">БАТИК</p>
-                <p v-on:click="filter = 1" class="filter">ШАРФЫ</p>
+                <p v-on:click="filter = 1" class="filter">БАТИК</p>
+                <p v-on:click="filter = 0" class="filter">ШАРФЫ</p>
                 <p v-on:click="filter = 2" class="filter">АКВАРЕЛЬ</p>
-                <p v-on:click="filter = 4" class="filter">ЖИВОПИСЬ</p>
+                <p v-on:click="filter = 3" class="filter">ЖИВОПИСЬ</p>
             </div>
 
             <div class="content-g">
 
                 <div v-for="note in notes" :key="note.id">
-                    <router-link v-if="note.IdTechnique === filter" to="/picture" class="picture-container"> <!-- v-if="note.IdTechnique === filter" -->
-                        <div @mouseover="hover = true" @mouseleave="hover = false">
-                            <img class="picture-img" v-bind:src="require('@/assets/pics/preview/' + note.Preview.slice(114))" :alt="note.Preview.slice(114)" width="320">
-                            <div v-if="hover" class="short-picture-description">
+                    <router-link :to = "{
+                                  name: 'Picture',
+                                  params: {
+                                      creation_date: note.CreationDate.slice(0,4),
+                                      description: note.Description,
+                                      technique: note.IdTechnique,
+                                      materials: note.Materials,
+                                      preview: note.Preview.slice(118),
+                                      height: note.SizeHeight,
+                                      width: note.SizeWidth,
+                                      title: note.Title,
+                                      status: note.status
+                                  }
+                                }"
+                                 v-if="note.IdTechnique === filter"
+                                 class="picture-container"> <!-- v-if="note.IdTechnique === filter" -->
+                    <div class="picture-container">
+
+                        <div @mouseover="note.Hover = true" @mouseleave="note.Hover = false">
+                            <img class="picture-img" v-bind:src="require('@/assets/pics/preview/' + note.Preview.slice(118))" :alt="note.Preview.slice(114)" width="320">
+                            <div v-if="note.Hover" :key="note.id" class="short-picture-description">
                                 <p class="object-title">{{note.Title}}</p>
                                 <p class="object-description">{{note.CreationDate.slice(0,4)}}</p>
 
                                 <p class="object-technique" v-if="note.IdTechnique === 1">БАТИК</p>
                                 <p class="object-technique" v-else-if="note.IdTechnique === 2">ШАРФ</p>
-                                <p class="object-technique" v-else-if="note.IdTechnique === 3">АКВАРЕЛЬ</p>
-                                <p class="object-technique" v-else-if="note.IdTechnique === 4">ЖИВОПИСЬ</p>
+                                <p class="object-technique" v-else-if="note.IdTechnique === 0">АКВАРЕЛЬ</p>
+                                <p class="object-technique" v-else-if="note.IdTechnique === 3">ЖИВОПИСЬ</p>
 
                                 <div class="object-size-container">
                                     <p class="object-size">{{note.SizeHeight}} СМ х</p>
@@ -36,19 +54,24 @@
                                 <button class="picture-status" v-else-if="note.status === 's'">В ПРОДАЖЕ</button>
                             </div>
                         </div>
+                    </div>
                     </router-link>
                 </div>
 
             </div>
         </div>
+
+        <SidePanel></SidePanel>
     </div>
 </template>
 
 <script>
-
+    import SidePanel from "./SidePanel";
+    import NavItems from "./NavItems";
     import { mapGetters } from 'vuex'
     export default {
         name: 'note-list',
+        components: {SidePanel, NavItems},
         computed: mapGetters(['notes']),
         beforeMount () {
             // Перед тем как загрузить страницу, нам нужно получить список всех
@@ -61,9 +84,9 @@
                 filter: 3,
                 hover: false,
                 note_path: '@/assets/',
+                check: null,
             };
         }
-
     }
 
 </script>

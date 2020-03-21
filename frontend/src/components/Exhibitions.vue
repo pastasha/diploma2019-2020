@@ -1,5 +1,7 @@
 <template>
-    <div id="app">
+    <div class="big-body" id="app">
+        <NavItems></NavItems>
+
         <div class="body">
             <h1>АРХИВ ВЫСТАВОК</h1>
 
@@ -14,9 +16,9 @@
                 <div class="content-e">
                 <div v-for="exhibition in exhibitions" :key="exhibition.id">
                     <div class="exhibition">
-                        <img class="exhibition-preview" v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(125))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
+                        <img class="exhibition-preview" v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(121))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
                         <div class="exhibition-description">
-                            <h3>{{exhibition.Name}}</h3>
+                            <h4>{{exhibition.Name}}</h4>
                             <p>{{exhibition.CreationDate}}</p>
                             <p>{{exhibition.Place}}</p>
                             <p>{{exhibition.Adress}}</p>
@@ -36,13 +38,18 @@
             </div>
 
         </div>
+
+        <SidePanel></SidePanel>
     </div>
 </template>
 
 <script>
+    import SidePanel from "./SidePanel";
+    import NavItems from "./NavItems";
     import { mapGetters } from 'vuex'
     export default {
         name: 'exhibitions',
+        components: {SidePanel, NavItems},
         computed: mapGetters(['exhibitions']),
         beforeMount () {
             this.$store.dispatch('getExhibitions')
@@ -70,7 +77,7 @@
         max-width: 1100px;
     }
 
-    h3{
+    h4{
         text-transform: uppercase;
         margin-bottom: 50px;
     }

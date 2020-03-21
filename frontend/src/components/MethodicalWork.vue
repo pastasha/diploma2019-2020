@@ -1,5 +1,7 @@
 <template>
-    <div id="app">
+    <div class="big-body" id="app">
+        <NavItems></NavItems>
+
         <div class="body">
             <h1>МЕТОДИЧЕСКИЕ РАБОТЫ</h1>
 
@@ -14,7 +16,7 @@
                     <div class="content">
                     <div v-for="met in methodical" :key="met.id">
                         <div class="methodical">
-                            <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(125))" :alt="met.Preview.slice(114)" width="320">
+                            <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(121))" :alt="met.Preview.slice(114)" width="320">
                             <div class="methodical-description">
                                 <p class="methodical-title">{{met.Name}}</p>
                                 <p class="methodical-author-and-year">{{met.Author}}</p>
@@ -34,13 +36,18 @@
                 </div>
                 </div>
         </div>
+
+        <SidePanel></SidePanel>
     </div>
 </template>
 
 <script>
+    import SidePanel from "./SidePanel";
+    import NavItems from "./NavItems";
     import { mapGetters } from 'vuex'
     export default {
         name: 'methodical-work',
+        components: {SidePanel, NavItems},
         computed: mapGetters(['methodical']),
         beforeMount () {
             this.$store.dispatch('getMethodical')

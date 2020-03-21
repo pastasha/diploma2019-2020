@@ -1,11 +1,11 @@
 <template>
-    <div id="app">
+    <div class="big-body" id="app">
         <div id="gallery">
 
             <div v-for="note in notes" :key="note.id">
                 <router-link to="/picture" class="picture-container">
                     <div @mouseover="hover = true" @mouseleave="hover = false">
-                        <img class="picture" v-bind:src="require('@/assets/pics/preview/' + note.Preview.slice(114))" :alt="note.Preview.slice(114)" width="320">
+                        <img class="picture" v-bind:src="require('@/assets/pics/preview/' + note.Preview.slice(120))" :alt="note.Preview.slice(114)" width="320">
                         <div v-if="hover" class="short-picture-description">
                             <p class="object-title">{{note.Title}}</p>
                             <p class="object-description">{{note.CreationDate.slice(0,4)}}</p>
@@ -48,13 +48,10 @@
                 note_path: '@/assets/',
             };
         }
-
     }
 </script>
 
 <style>
-
-
     div#gallery figure {
         background: #fefefe;
         border: 2px solid #fcfcfc;
@@ -66,20 +63,17 @@
         display: inline-block;
         column-break-inside: avoid;
     }
-
     div#gallery figure img {
         width: 100%; height: auto;
         border-bottom: 1px solid #ccc;
         padding-bottom: 15px;
         margin-bottom: 5px;
     }
-
     div#gallery figure figcaption {
         font-size: .9rem;
         color: #444;
         line-height: 1.5;
     }
-
     @media screen and (max-width: 750px) {
         #columns { column-gap: 0px; }
         #columns figure { width: 100%; }

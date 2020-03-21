@@ -19,6 +19,7 @@ class Picture(models.Model):
     SizeWidth = models.FloatField(blank=True, help_text="Вводите ширину изделия в сантиметрах")
     Materials = models.CharField(max_length=500, help_text="Ткань, кисти, бумага...")
     Description = models.CharField(max_length=1000, help_text="Добавьте описание картины")
+    Hover = models.BooleanField()
     SALE_STATUS = (
         ('a', 'Author ownership'),
         ('p', 'Private collection'),
@@ -51,7 +52,7 @@ class Diploma(models.Model):
     SizeHeight = models.FloatField(blank=True, help_text="Вводите высоту изделия в сантиметрах")
     SizeWidth = models.FloatField(blank=True, help_text="Вводите ширину изделия в сантиметрах")
     StudentsFIO = models.CharField(max_length=200, help_text="ФИО студента")
-    Description = models.CharField(max_length=1000, help_text="Добавьте описание картины")
+    Description = models.CharField(max_length=1000, help_text="ФИО куратора")
 
     # TODO видео
 
