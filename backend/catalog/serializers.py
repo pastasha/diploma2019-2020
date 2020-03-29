@@ -12,14 +12,14 @@ class methodical(serializers.ModelSerializer):
 class picture(serializers.ModelSerializer):
     class Meta:
         model = Picture
-        fields = ('Title', 'Preview', 'CreationDate', 'IdTechnique', 'SizeHeight',
-                  'SizeWidth', 'Materials', 'Description', 'Hover', 'status')
+        fields = ('id', 'Title', 'Preview', 'CreationDate', 'IdTechnique', 'SizeHeight',
+                  'SizeWidth', 'Materials', 'Description', 'Hover', 'status', 'Price')
 
 
 class photo_gallery(serializers.ModelSerializer):
     class Meta:
         model = photoGallery
-        fields = ('image')#, 'Path')
+        fields = ('image', 'picture')
 
 
 class diploma(serializers.ModelSerializer):
@@ -32,13 +32,13 @@ class diploma(serializers.ModelSerializer):
 class photo_diploma(serializers.ModelSerializer):
     class Meta:
         model = photoDiploma
-        fields = ('image')#, 'Path')
+        fields = ('image', 'picture')
 
 
 class exhibition(serializers.ModelSerializer):
     class Meta:
         model = Exhibition
-        fields = ('Name', 'CreationDate', 'Preview', 'Place', 'Adress',
+        fields = ('Name', 'CreationDate', 'Preview', 'Place', 'Address',
                   'Managers', 'Curator', 'Catalog')
 
 

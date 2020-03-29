@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from django.db.backends.mysql.base import DatabaseWrapper
+
+DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
+    'bot.apps.BotConfig',
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
@@ -89,12 +94,12 @@ WSGI_APPLICATION = 'mosi.wsgi.application'
 
 DATABASES = {
     'default':{
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'mosi',
-        'USER': 'root',
+        'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
 
@@ -137,5 +142,18 @@ CORS_ORIGIN_ALLOW_ALL = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SESSION_COOKIE_SECURE = False
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'polinicus@gmail.com'
+EMAIL_HOST_PASSWORD = 'gtufcbr2001'
+DEFAULT_FROM_EMAIL = 'B. Polina'
+DEFAULT_TO_EMAIL = 'polinicus@gmail.com'
+
+MosiAdminBot_Token = '899635646:AAFOHKW4Wg3gMBN2AvdKrRndg2Oy_C1tRnA'
+
 
 

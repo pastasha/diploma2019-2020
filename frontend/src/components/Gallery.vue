@@ -26,7 +26,8 @@
                                       height: note.SizeHeight,
                                       width: note.SizeWidth,
                                       title: note.Title,
-                                      status: note.status
+                                      status: note.status,
+                                      price: note.Price
                                   }
                                 }"
                                  v-if="note.IdTechnique === filter"
@@ -39,10 +40,10 @@
                                 <p class="object-title">{{note.Title}}</p>
                                 <p class="object-description">{{note.CreationDate.slice(0,4)}}</p>
 
-                                <p class="object-technique" v-if="note.IdTechnique === 1">БАТИК</p>
-                                <p class="object-technique" v-else-if="note.IdTechnique === 2">ШАРФ</p>
-                                <p class="object-technique" v-else-if="note.IdTechnique === 0">АКВАРЕЛЬ</p>
-                                <p class="object-technique" v-else-if="note.IdTechnique === 3">ЖИВОПИСЬ</p>
+                                <p class="object-technique" v-if="note.IdTechnique === 1">{{technique = 'БАТИК'}}</p>
+                                <p class="object-technique" v-else-if="note.IdTechnique === 2">{{technique = 'ШАРФ'}}</p>
+                                <p class="object-technique" v-else-if="note.IdTechnique === 0">{{technique = 'АКВАРЕЛЬ'}}</p>
+                                <p class="object-technique" v-else-if="note.IdTechnique === 3">{{technique = 'ЖИВОПИСЬ'}}</p>
 
                                 <div class="object-size-container">
                                     <p class="object-size">{{note.SizeHeight}} СМ х</p>
@@ -51,7 +52,21 @@
 
                                 <button class="picture-status" v-if="note.status === 'a'">СОБСТВЕННОСТЬ АВТОРА</button>
                                 <button class="picture-status" v-else-if="note.status === 'p'">ПРИВАТНАЯ КОЛЛЕКЦИЯ</button>
-                                <button class="picture-status" v-else-if="note.status === 's'">В ПРОДАЖЕ</button>
+
+                                <router-link :to = "{
+                                  name: 'Checkout',
+                                  params: {
+                                      title: note.Title,
+                                      price: note.Price,
+                                      preview: note.Preview.slice(118),
+                                      picture: note.Title+'|'+technique+'|'+note.CreationDate+'|'+note.Price+'$'
+                                  }
+                                }">
+                                    <button class="picture-status" v-if="note.status === 's'" title="заказать картину">
+                                        {{ note.Price }}$
+                                    </button>
+                                </router-link>
+
                             </div>
                         </div>
                     </div>

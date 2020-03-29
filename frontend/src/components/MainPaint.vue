@@ -4,6 +4,7 @@
             <div class="nav-item">
                 <router-link to="/"> <img class="logo-link" src="@/assets/logo_paint.png"> </router-link>
             </div>
+
             <div class="nav-items" id="nav-items">
                 <div class="nav-item">
                     <router-link to="/about-author" class="nav-link"><h2> ОБ АВТОРЕ </h2></router-link>

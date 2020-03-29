@@ -24,8 +24,8 @@
                             </div>
 
                             <div class="file-container">
-                                <img class="act-with-file" src="@/assets/read.png">
-                                <img class="act-with-file" src="@/assets/download.png">
+                                <img class="act-with-file" src="@/assets/read.png" title="читать статью онлайн">
+                                <img class="act-with-file" src="@/assets/download.png" title="скачать статью">
 
                                 <!--<a download v-bind:href="require('@/assets/files/' + met.Path.slice(118))" :alt="met.Path.slice(118)">
                                     <img class="act-with-file" src="@/assets/download.png">

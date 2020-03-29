@@ -35,7 +35,7 @@
 
     .nav-items{
         position: absolute;
-        top: 12%;
+        top: 10%;
         left: 30%;
         right: -50%;
     }

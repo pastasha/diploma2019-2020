@@ -28,8 +28,8 @@
                             <p>{{exhibition.Curator}}</p>
 
                             <div class="file-container-e">
-                                <img class="file" src="@/assets/read.png">
-                                <img class="file" src="@/assets/download.png">
+                                <img class="file" src="@/assets/read.png" title="читать каталог онлайн">
+                                <img class="file" src="@/assets/download.png" title="скачать каталог">
                             </div>
                         </div>
                     </div>
