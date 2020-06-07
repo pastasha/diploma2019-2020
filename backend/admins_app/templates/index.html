@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Главная страница</h1>
+
+  <ul>
+      <li><strong>Картины:</strong> {{ num_pictures }}</li>
+      <li><strong>Дипломные работы:</strong> {{ num_diplomas }}</li>
+      <li><strong>Выставки:</strong> {{ num_exhibitions }}</li>
+      <li><strong>Техники:</strong> {{ num_technique }}</li>
+      <li><strong>Пресса:</strong> {{ num_methodical }}</li>
+      <li><strong>Методические разработки:</strong> {{ num_press }}</li>
+  </ul>
+
+{% endblock %}

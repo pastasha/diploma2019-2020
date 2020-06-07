@@ -1,14 +1,15 @@
 from django.db import models
 from catalog.models import Picture
+from datetime import datetime
+from django.utils import timezone
 
 
 class Order(models.Model):
-    order_id = models.IntegerField(primary_key=True)
     full_name = models.CharField(max_length=100, help_text="ФИО")
     country = models.CharField(max_length=100, help_text="Страна")
     city = models.CharField(max_length=100, help_text="Город")
     telephone_number = models.CharField(max_length=25, help_text="Телефонный номер")
-    nickname = models.CharField(max_length=200, null=True, help_text="Никнейм")
+    nickname = models.CharField(max_length=200, blank=True, null=True, help_text="Никнейм")
 
     WAY_OF_COMMUNICATION = (
         ('t', 'Telegram'),
@@ -27,8 +28,8 @@ class Order(models.Model):
     receive = models.CharField(max_length=1, choices=WAY_TO_RECEIVE, blank=True, default='n',
                                help_text="Способ получения")
 
-    post_office = models.CharField(max_length=200, help_text="Почтовое отделение")
-    address = models.CharField(max_length=200, help_text="Адрес")
+    post_office = models.CharField(max_length=200, blank=True, null=True, help_text="Почтовое отделение")
+    address = models.CharField(max_length=200, blank=True, null=True, help_text="Адрес")
 
     PAYMENT_METHOD = (
         ('o', 'оплатить заказ при получении'),
@@ -38,20 +39,20 @@ class Order(models.Model):
                                help_text="Способ оплаты")
 
     total_amount = models.IntegerField(help_text="Общая стоимость")
-    comment = models.CharField(max_length=500, help_text="Комментарий")
+    comment = models.CharField(max_length=500, blank=True, null=True, help_text="Комментарий")
     picture_with_price_list = models.CharField(max_length=600, help_text="Комментарий")
-    datetime = models.DateTimeField(blank=True, default="0000-00-00", help_text="Дата оформления заказа")
+    datetime = models.DateTimeField(default=timezone.now, blank=True, help_text="Дата оформления")
 
     def __str__(self):
         return self.full_name
 
 
 class Comment(models.Model):
-    picture = models.ForeignKey(Picture, on_delete=models.CASCADE, related_name='comments')
     full_name = models.CharField(max_length=100, help_text="ФИО")
     email_or_phone = models.CharField(max_length=100, help_text="Электронная почта или номер телефона")
     comment = models.CharField(max_length=600, help_text="Комментарий")
-    datetime = models.DateTimeField(blank=True, default="0000-00-00", help_text="Дата публикации комментария")
+    datetime = models.DateTimeField(default=timezone.now, blank=True, null=True, help_text="Дата публикации")
+    picture_id = models.CharField(max_length=100, help_text="Картина")
 
     def __str__(self):
         return self.full_name

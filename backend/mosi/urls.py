@@ -10,8 +10,8 @@ if settings.DEBUG:
     urlpatterns = [
         path('admin/', admin.site.urls),
         path('api/', include('catalog.urls')),
-        path('', include('catalog.urls')),
         path('bot/', include('bot.urls')),
+        path('', include('admins_app.urls')),
         path('bot/order-form/', order_form, name='order_form'),
         path('bot/comment-form/', comment_form, name='comment_form'),
         path('', include('catalog.urls')),

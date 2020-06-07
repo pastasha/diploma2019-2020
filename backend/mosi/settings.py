@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
     'bot.apps.BotConfig',
+    'admins_app.apps.AdminConfig',
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
@@ -153,7 +154,6 @@ EMAIL_HOST_PASSWORD = 'gtufcbr2001'
 DEFAULT_FROM_EMAIL = 'B. Polina'
 DEFAULT_TO_EMAIL = 'polinicus@gmail.com'
 
-MosiAdminBot_Token = '899635646:AAFOHKW4Wg3gMBN2AvdKrRndg2Oy_C1tRnA'
 
 
 

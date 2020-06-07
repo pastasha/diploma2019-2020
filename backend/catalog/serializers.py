@@ -19,20 +19,20 @@ class picture(serializers.ModelSerializer):
 class photo_gallery(serializers.ModelSerializer):
     class Meta:
         model = photoGallery
-        fields = ('image', 'picture')
+        fields = ('id', 'image', 'picture')
 
 
 class diploma(serializers.ModelSerializer):
     class Meta:
         model = Diploma
         fields = ('Title', 'Preview', 'ReleaseYear', 'IdTechnique', 'SizeHeight',
-                  'SizeWidth', 'StudentsFIO', 'Description')
+                  'SizeWidth', 'StudentsFIO', 'Description', 'Video')
 
 
 class photo_diploma(serializers.ModelSerializer):
     class Meta:
         model = photoDiploma
-        fields = ('image', 'picture')
+        fields = ('id', 'image', 'picture')
 
 
 class exhibition(serializers.ModelSerializer):

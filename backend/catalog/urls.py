@@ -1,3 +1,4 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views import PictureWS, DiplomaWS, ExhibitionWS, MethodicalWS, \
@@ -14,4 +15,3 @@ router.register(r'photo-diploma', photo_diplomaWS, basename='pd')
 router.register(r'technique', TechniqueWS, basename='technique')
 
 urlpatterns = router.urls
-

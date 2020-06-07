@@ -45,3 +45,5 @@ class PressWS(viewsets.ModelViewSet):
 class TechniqueWS(viewsets.ModelViewSet):
     serializer_class = technique
     queryset = Technique.objects.all()
+
+
