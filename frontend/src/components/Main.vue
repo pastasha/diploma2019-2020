@@ -1,15 +1,43 @@
 <template>
     <div class="main-body" id="app">
-        <NavItems class="nav-items-main"></NavItems>
-        <h1 class="main-title">БОГАЙЧУК ЛЮДМИЛА</h1>
+        <NavItems></NavItems>
+
+        <h1>БОГАЙЧУК ЛЮДМИЛА</h1>
         <div class="main-container">
-            <div class="techniques">
-                <router-link to="/gallery"><p>АКВАРЕЛЬ</p></router-link>
-                <router-link to="/gallery"><p>ЖИВОПИСЬ</p></router-link>
-                <router-link to="/gallery"><p>БАТИК</p></router-link>
-                <router-link to="/gallery"><p>АБСТРАКЦИЯ</p></router-link>
-                <router-link to="/gallery"><p>ШАРФ</p></router-link>
-            </div>
+            <figure>
+                <p><img src="@/assets/main-back-aqua.png" alt="АКВАРЕЛЬ" /></p>
+                <figcaption>
+                    <router-link to="/gallery"><p>АКВАРЕЛЬ</p></router-link>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <p><img src="@/assets/main-back-paint.png" alt="ЖИВОПИСЬ" /></p>
+                <figcaption>
+                    <router-link to="/gallery"><p>ЖИВОПИСЬ</p></router-link>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <p><img src="@/assets/main-back-batik.png" alt="БАТИК" /></p>
+                <figcaption>
+                    <router-link to="/gallery"><p>БАТИК</p></router-link>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <p><img src="@/assets/main-back-abstract.png" alt="АБСТРАКЦИЯ" /></p>
+                <figcaption>
+                    <router-link to="/gallery"><p>АБСТРАКЦИЯ</p></router-link>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <p><img src="@/assets/main-back-sharf.png" alt="ШАРФ" /></p>
+                <figcaption>
+                    <router-link to="/gallery"><p>ШАРФ</p></router-link>
+                </figcaption>
+            </figure>
         </div>
 
         <SidePanel></SidePanel>
@@ -26,24 +54,15 @@
 </script>
 
 <style>
+    figcaption p{
+        font: lighter 1.5em Yu Gothic UI;
+        color: #7e7f7f;
+    }
+
     .techniques p{
         position: relative;
         display: inline-block;
         margin: 10px 136px 10px 125px;
-    }
-
-    .techniques{
-        position: absolute;
-        bottom: 230px;
-        background-color: white;
-        left: 0;
-        right: 0;
-    }
-
-    .main-title{
-        position: absolute;
-        top: 17%;
-        right: 4%;
     }
 
     .main-container{
@@ -52,17 +71,33 @@
         right: 0;
         width: 100%;
         height: 100%;
-        background: url(~@/assets/main-back.png) no-repeat;
-        background-size: 100% auto;
-
+        bottom: 0;
+        left: 0;
     }
 
-    .nav-items-main{
+    .main-container figure{
+        position: relative;
+        display: inline-block;
+        width: 20%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .main-container img{
         position: absolute;
         top: 0;
-        left: 5%;
-        right: 0;
+        left: 0;
         bottom: 0;
+        width: 100%;
+    }
+
+    .main-container figcaption{
+        position: absolute;
+        width: 100%;
+        top: 480px;
+        background-color: white;
+        color: grey;
     }
 
     .main-body{
@@ -74,4 +109,10 @@
         bottom: 0;
     }
 
+    .main-body h1{
+        position: absolute;
+        top: 18%;
+        right: 5.5%;
+        font: lighter 250% Yu Gothic;
+    }
 </style>

@@ -14,6 +14,5 @@ if settings.DEBUG:
         path('', include('admins_app.urls')),
         path('bot/order-form/', order_form, name='order_form'),
         path('bot/comment-form/', comment_form, name='comment_form'),
-        path('', include('catalog.urls')),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]

@@ -1,5 +1,5 @@
 <template>
-    <div class="big-body" id="app">
+    <div id="app">
         <NavItems></NavItems>
 
         <div class="body">
@@ -12,11 +12,11 @@
                     <p class="filter">2018</p>
                     <p class="filter">2017</p>
                 </div>
-                <div class="container-for-content">
-                    <div class="content">
+                <div class="container-for-content-press">
+                    <div class="content-press">
                     <div v-for="met in press" :key="met.id">
-                        <div class="methodical">
-                            <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(121))" :alt="met.Preview.slice(114)" width="320">
+                        <div class="press">
+                            <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(116))" :alt="met.Preview.slice(114)" width="320">
                             <div class="methodical-description">
                                 <p class="methodical-title">{{met.Name}}</p>
                                 <p class="methodical-author-and-year">{{met.Author}}</p>
@@ -65,14 +65,6 @@
 </script>
 
 <style>
-    .big-body{
-        position: absolute;
-        top: 0;
-        left: 5%;
-        right: 0;
-        bottom: 0;
-    }
-
     .file-container{
         position: absolute;
         right: 0;
@@ -112,30 +104,33 @@
         width: 140px;
     }
 
-    .methodical{
-        position: relative;
+    .press{
         display: grid;
         left: 0;
         right: 0;
-        top: 0;
+        top: 5%;
         bottom: 0;
-        height: 200px;
-        box-shadow: 0 0 15px #9b9b9b;
+        width: 100%;
+        height: 100px;
+        padding-bottom: 30px;
+        box-shadow: 0 0 6px #9b9b9b;
+        position: relative;
     }
 
-    .content{
+    .content-press{
         display: grid;
-        grid-template-rows: 300px;
+        grid-template-rows: 130px;
         top: 0;
         bottom: 0;
         left: 0;
     }
 
-    .container-for-content{
+    .container-for-content-press{
         position: relative;
         left: 0;
-        top: -25px;
-        width: 1000px;
+        top: 0;
+        width: 100%;
+        padding: 1% 21% 5%;
         display: inline-block;
     }
 

@@ -1,15 +1,16 @@
 <template>
-    <div class="big-body" id="app">
+    <div id="app">
 
-        <div class="nav-item">
-            <router-link to="/"> <img class="logo-link" src="@/assets/logo.png"> </router-link>
-        </div>
+        <nav class="container">
+            <div class="nav-item">
+                <router-link to="/"> <img class="logo-link" src="@/assets/logo.png"> </router-link>
+            </div>
+        </nav>
 
         <div class="body">
 
             <div class="full-picture-container">
                 <div class="picture-full-description">
-                    <br>
                     <div class="picture-name-and-year-container">
                         <p class="full-title">{{ $route.params.title }}</p>
                         <p class="full-year">{{ $route.params.creation_date }}</p>
@@ -32,6 +33,7 @@
                     <router-link :to = "{
                                   name: 'Checkout',
                                   params: {
+                                      id: $route.params.id,
                                       title: $route.params.title,
                                       price: $route.params.price,
                                       preview: $route.params.preview,
@@ -43,20 +45,26 @@
                         </button>
                     </router-link>
 
-
-                    <div class="pages">
-
-                    </div>
-
                     <p class="full-picture-moto">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут они в буквенных домах на берегу Семантика большого языкового океана. Маленький ручеек Даль журчит по всей стране и обеспечивает ее всеми необходимыми правилами. Эта парадигматическая страна, в которой жаренные члены предложения залетают прямо в рот.
                         {{ $route.params.description }}</p>
                 </div>
 
                 <div class="full-list-of-selected-picture">
-                    <img class="right-arrow" src="@/assets/arrow-right.png">
-                    <img class="left-arrow" src="@/assets/arrow-left.png">
+                    <!--
+                    <button><img class="right-arrow" src="@/assets/arrow-right.png"></button>
+                    <button><img class="left-arrow" src="@/assets/arrow-left.png"></button>
+
+                    <img class="full-picture" src="@/assets/kudiidti50x80.jpg">
+
+                    <div v-for="photo in gallery_photos" :key="photo.id">
+                        <div v-if="photo.picture === $route.params.id" v-on:timeupdate="increase">
+                            <img class="full-picture" v-bind:src="require('@/assets/pics/main-photos/' + photo.image.slice(128))" :alt="$route.params.preview">
+                        </div>
+                    </div>
+                    -->
 
                     <img class="full-picture" v-bind:src="require('@/assets/pics/preview/' + $route.params.preview)" :alt="$route.params.preview">
+
                 </div>
             </div>
 
@@ -66,6 +74,7 @@
                 <router-link :to = "{
                                   name: 'Feedback',
                                   params: {
+                                      id: $route.params.id,
                                       title: $route.params.title,
                                       preview: $route.params.preview,
                                       picture: $route.params.title+'|'+technique+'|'+$route.params.creation_date+'|'+$route.params.price+'$'
@@ -73,6 +82,18 @@
                                 }">
                 <button class="leave-comment">ОСТАВИТЬ КОММЕНТАРИЙ</button>
                 </router-link>
+
+
+                <div v-for="comment in comments" :key="comment.id">
+                    <div v-if="comment.is_confirm === true && comment.picture_id.toString() === $route.params.id.toString()" class="p-comment">
+
+                        <div class="c-description">
+                            <p><strong>{{comment.full_name}}</strong></p>
+                            <p class="c-comment">{{comment.comment}}</p>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -84,14 +105,36 @@
 
 <script>
     import SidePanel from "./SidePanel";
+    import {mapGetters} from "vuex";
 
     export default {
         name: "Picture",
         components: {SidePanel},
+        computed: mapGetters(['gallery_photos', 'comments']),
+        beforeMount () {
+            this.$store.dispatch('getGalleryPhotos');
+            this.$store.dispatch('getComments');
+        },
         data() {
             return {
+                sliderAllCount: 0,
+                sliderActive: 0,
+                sliderOffsetLeft: 0,
+                sliderOffsetStep: 0,
                 technique: ''
             }
+        },
+        methods: {
+            increase: function () {
+                return this.sliderAllCount++;
+            },
+            openSlide: function (id) {
+                if (id > 0 && id <= this.sliderAllCount) {
+                    this.sliderActive = id;
+                    // Сдвигаем элемент со слайдами
+                    this.sliderOffsetLeft = -(this.sliderActive * this.sliderOffsetStep - this.sliderOffsetStep);
+                }
+            },
         }
     }
 
@@ -114,20 +157,16 @@
     }
 
     .comments{
-        position: absolute;
-        left: 0;
-        right: 0;
+        position: relative;
+        top: -30%;
+        left: 12%;
+        width: 70%;
         text-align: center;
     }
 
-    .logo-link{
-        width: 25%;
-        height: 25%;
-    }
-
     .full-picture-moto{
-        margin-top: 110px;
-        font: lighter 13pt Yu Gothic UI;
+        margin-top: 30px;
+        font: lighter 1em Yu Gothic UI;
     }
 
     .full-picture-description{
@@ -144,12 +183,12 @@
 
     .full-picture-description-item{
         margin: 0;
-        font: 12pt Yu Gothic;
+        font: 1em Yu Gothic;
     }
 
     .full-picture-description-itemm{
         margin: 0;
-        font: lighter 12pt Yu Gothic UI;
+        font: lighter 1em Yu Gothic UI;
     }
 
     .full-picture-state{
@@ -163,28 +202,33 @@
         padding: 0;
         border: none;
         text-align: center;
-        font: 11pt Yu Gothic UI;
+        font: 1em Yu Gothic UI;
         color: #9e9e9e;
     }
 
     .full-picture{
         position: absolute;
-        right: 21%;
-        height: 720px;
-        border: solid 10px white;
-        box-shadow: 0 0 10px #9b9b9b;
+        top: 0;
+        left : 0;
+        right: 0;
+        bottom: 0;
+        height: 75%;
+        margin-top: 2%;
+        margin-left: 32%;
+        border: solid 6px white;
+        box-shadow: 0 0 6px #b5b5b5;
     }
 
     .right-arrow{
         position: absolute;
-        top: 45%;
+        top: 35%;
         left: 0;
         height: 60px;
     }
 
     .left-arrow{
         position: absolute;
-        top: 45%;
+        top: 35%;
         right: 0;
         height: 60px;
     }
@@ -200,20 +244,21 @@
 
     .full-technique{
         text-transform: uppercase;
-        font: 12pt Yu Gothic;
+        font: 1em Yu Gothic;
         margin-bottom: 10px;
     }
 
     .full-year{
-        display: inline-block;
-        font: 15pt Yu Gothic;
+        position: relative;
+        top: -20px;
+        font: 1em Yu Gothic;
     }
 
     .full-title{
         display: inline-block;
         text-transform: uppercase;
         margin-bottom: 50px;
-        font: 30pt Yu Gothic;
+        font: 2.3em Yu Gothic;
     }
 
     .picture-full-description{
@@ -230,4 +275,23 @@
         bottom: 0;
         height: 730px;
     }
+
+    .p-comment{
+        position: relative;
+        height: 80px;
+        margin-bottom: 30px;
+        background-color: white;
+        box-shadow: 0 0 10px #D1D1D1;
+        left: 0;
+        right: 0;
+        padding: 5px 40px 15px;
+    }
+
+    .c-description{
+        position: absolute;
+        left: 5%;
+    }
+
+    
+
 </style>

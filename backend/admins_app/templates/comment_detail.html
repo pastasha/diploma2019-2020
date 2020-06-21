@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% csrf_token %}
+  <div class="content">
+    <h1>Комментарий №{{ comment.id }}</h1>
+
+    <p><strong>Комментатор:</strong> {{comment.full_name}}</p>
+    <p><strong>Электронная почта или телефон:</strong> {{comment.email_or_phone}}</p>
+    <p><strong>Комментарий:</strong> {{comment.comment}} </p>
+    <p><strong>Дата отправки:</strong> {{comment.datetime}}</p>
+    <p><strong>Картина:</strong> {{comment.picture_id}}</p>
+
+    <div class="buttons-container">
+      <a href="" id="confirm-btn"><img src="../static/img/confirm.png"></a>
+      <a href="" id="ban-btn"><img src="../static/img/ban.png"></a>
+    </div>
+  </div>
+  <input id="comment_id" value="{{ comment.id }}">
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+      $('#comment_id').hide();
+
+        $('#confirm-btn').click(function(e){
+            e.preventDefault();
+            alert("Комментарий опубликован.");
+            data = {
+              "state": "confirm",
+              "comment_id": $('#comment_id').val()
+            };
+            SentAjax(data);
+            return false;
+        });
+
+        $('#ban-btn').click(function(e){
+            e.preventDefault();
+            alert("Комментарий удален.");
+            data = {
+              "state": "ban",
+              "comment_id": $('#comment_id').val()
+            };
+            SentAjax(data);
+            return false;
+        });
+
+        function SentAjax($data) {
+            $.ajax({
+                url: '/comment-processing/',
+                type: 'POST',
+                data: {'state': $data, 'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()},
+            });
+        }
+    })
+</script>
+
+{% endblock %}

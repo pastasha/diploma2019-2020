@@ -1,5 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Выставки</h1>
+
+    <div class="content">
+        <h1>Список выставок</h1>
+        {% if exhibitions %}
+        <ul>
+
+          {% for exhibition in exhibitions %}
+
+           <div class="list-item">
+               <a class="item-title" href="{% url 'exhibition-update' exhibition.pk %}">{{ exhibition.Name }}</a>
+                <a href="{% url 'exhibition-update' exhibition.pk %}"><img class="update-link" src="../static/img/update.png"></a>
+                <a href="{% url 'exhibition-delete' exhibition.pk %}"><img class="delete-link" src="../static/img/delete.png"></a>
+            </div>
+
+          {% endfor %}
+
+        </ul>
+        {% else %}
+          <p>В архиве нет выставок.</p>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -207,11 +207,6 @@
         bottom: 0;
     }
 
-    h2{
-        color: #321C1E;
-        font: bold 125% Yu Gothic;
-    }
-
     .nav-item{
         margin-right: 5%;
         display: inline-block;

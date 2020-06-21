@@ -1,5 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Дипломные работы</h1>
+
+    <div class="content">
+        <h1>Список дипломных работ</h1>
+        {% if diplomas %}
+        <ul>
+
+          {% for diploma in diplomas %}
+
+           <div class="list-item">
+               <a class="item-title" href="{% url 'diploma-update' diploma.pk %}">{{ diploma.Title }}</a>
+                <a href="{% url 'diploma-update' diploma.pk %}"><img class="update-link" src="../static/img/update.png"></a>
+                <a href="{% url 'diploma-delete' diploma.pk %}"><img class="delete-link" src="../static/img/delete.png"></a>
+            </div>
+
+          {% endfor %}
+
+        </ul>
+        {% else %}
+          <p>В архиве нет дипломных работ.</p>
+        {% endif %}
+    </div>
 {% endblock %}

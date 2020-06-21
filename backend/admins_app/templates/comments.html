@@ -1,5 +1,37 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Комментарии</h1>
+    <div class="content">
+
+    <h1>Список комментариев</h1>
+    {% if comments %}
+    <ul>
+
+      {% for comment in comments %}
+
+       <div class="list-item" id="list-item">
+            <a class="item-title" href="{% url 'comment-detail' comment.pk %}">{{ comment.full_name }}</a>
+            <a class="item-date" href="{% url 'comment-detail' comment.pk %}">{{ comment.datetime }}</a>
+            <input class="comment-confirm" id="comment_confirm" value="{{ comment.is_confirm }}">
+        </div>
+
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В архиве нет комментариев.</p>
+    {% endif %}
+    </div>
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        console.log($('#comment_confirm').val());
+        if ($('#comment_confirm').val() === "True"){
+            $('#list-item').css('background', 'white');
+        }
+        if ($('#comment_confirm').val() === "False"){
+            $('#list-item').css('background', '#f5f5f5');
+        }
+    });
+</script>
 {% endblock %}

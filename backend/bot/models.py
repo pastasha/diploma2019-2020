@@ -42,6 +42,7 @@ class Order(models.Model):
     comment = models.CharField(max_length=500, blank=True, null=True, help_text="Комментарий")
     picture_with_price_list = models.CharField(max_length=600, help_text="Комментарий")
     datetime = models.DateTimeField(default=timezone.now, blank=True, help_text="Дата оформления")
+    is_confirm = models.BooleanField(default=False)
 
     def __str__(self):
         return self.full_name
@@ -53,6 +54,7 @@ class Comment(models.Model):
     comment = models.CharField(max_length=600, help_text="Комментарий")
     datetime = models.DateTimeField(default=timezone.now, blank=True, null=True, help_text="Дата публикации")
     picture_id = models.CharField(max_length=100, help_text="Картина")
+    is_confirm = models.BooleanField(default=False)
 
     def __str__(self):
         return self.full_name

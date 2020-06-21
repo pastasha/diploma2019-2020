@@ -1,5 +1,5 @@
 <template>
-    <div class="big-body" id="app">
+    <div id="app">
         <NavItems></NavItems>
 
         <div class="body">
@@ -12,8 +12,8 @@
                     <p class="filter">2017</p>
                 </div>
 
-                <div class="container-for-content">
-                    <div class="content">
+                <div class="container-for-content-met">
+                    <div class="content-met">
                     <div v-for="met in methodical" :key="met.id">
                         <div class="methodical">
                             <img class="methodical-preview" v-bind:src="require('@/assets/pics/preview/' + met.Preview.slice(121))" :alt="met.Preview.slice(114)" width="320">
@@ -67,50 +67,44 @@
         position: absolute;
         right: 0;
         top: 0;
-        margin-top: 70px;
-        margin-right: 50px;
+        margin-top: 30px;
+        margin-right: 20px;
     }
 
     .act-with-file{
         position: relative;
-        height: 60px;
-        width: 60px;
-        margin-left: 50px;
-    }
-
-    .methodical-title{
-        font: lighter 30pt Yu Gothic;
-        margin-bottom: 10px;
-    }
-
-    .methodical-author-and-year{
-        font: lighter 15pt Yu Gothic;
+        height: 40px;
+        width: 40px;
         margin-left: 10px;
-        margin-bottom: 10px;
+    }
+
+    .methodical-title, .methodical-author-and-year{
+        font: 1em Yu Gothic;
+        margin-bottom: 0;
     }
 
     .methodical-description{
         position: absolute;
-        margin: 20px;
-        left: 200px;
+        margin: 18px;
+        left: 100px;
     }
 
     .methodical-preview{
-        margin: 30px;
+        margin: 10px;
         position: absolute;
-        height: 140px;
-        width: 140px;
+        height: 80px;
+        width: 80px;
     }
 
     .methodical{
         display: grid;
-        left: 240px;
-        right: 240px;
-        top: 18%;
+        left: 0;
+        right: 0;
+        top: 5%;
         bottom: 0;
-        width: 1100px;
-        height: 200px;
-        box-shadow: 0 0 15px #9b9b9b;
+        width: 100%;
+        height: 100px;
+        box-shadow: 0 0 6px #9b9b9b;
         position: relative;
     }
 
@@ -120,5 +114,22 @@
         width: 16.5%;
         top: 20%;
         bottom: 0;
+    }
+
+    .content-met{
+        display: grid;
+        grid-template-rows: 130px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .container-for-content-met{
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 1% 21% 5%;
+        display: inline-block;
     }
 </style>

@@ -1,19 +1,9 @@
-import json
-import datetime
-from mosi.config import TOKEN, CHAT_ID
-from django.shortcuts import get_object_or_404
-from bot.models import Comment
-from django.http import HttpResponse
-from django.utils import timezone
+from mosi.config import TOKEN
 from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import send_mail
 import bot.bot_funcs as bf
 import telebot
-from telebot import types
 from bot.forms import OrderForm, CommentForm
 from django.http import HttpResponse
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -71,49 +61,20 @@ def comment_form(request):
             print(form.errors)
 
         message = "НОВЫЙ КОММЕНТАРИЙ\n\nКантина: %s\nИмя и фамилия: %s\nОбратная связь: %s\n" \
-                  "Комментарий: %s\n\nДата отправки: %s" \
-                  % (data["picture"], data["full_name"], data["email_or_phone"],
-                     data["comment"], data["datetime"])
+                  "Комментарий: %s\n\n" \
+                  "Посетите панель администратора: http://127.0.0.1:8000/comments/" \
+                  % (data["picture_id"], data["full_name"], data["email_or_phone"],
+                     data["comment"])
 
-        send_comment_to_bot(message)
+        json_data = {
+            "chat_id": '322095460',
+            "text": message,
+        }
+
+        bf.send_message(json_data)
         return HttpResponse('post')
     else:
         print('проблема ті че творишь')
         return HttpResponse('no post')
 
 
-@bot.message_handler(content_types=["text"])
-def send_comment_to_bot(message):
-    keyboard = types.InlineKeyboardMarkup()
-    callback_button_yes = types.InlineKeyboardButton(text="Подтвердить", callback_data="confirm")
-    callback_button_no = types.InlineKeyboardButton(text="Удалить", callback_data="delete")
-    keyboard.add(callback_button_yes, callback_button_no)
-    bot.send_message(CHAT_ID, message, reply_markup=keyboard)
-
-
-@bot.callback_query_handler(func=lambda call: True)
-def callback_inline(call):
-    if call.data == "confirm":
-        print('1')
-        bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="Комментарий опубликован")
-    elif call.data == "delete":
-        bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="Комментарий удален")
-        print('0')
-        # bot.edit_message_text(chat_id=CHAT_ID, message_id=call.message.message_id, text="Пыщь")
-
-
-class UpdateBot(APIView):
-    def post(self, request):
-        json_str = request.body.decode('UTF-8')
-        update = types.Update.de_json(json_str)
-        bot.process_new_updates([update])
-
-        return Response({'code': 200})
-
-
-
-"""if call.message:
-    if call.data == "test":
-        bot.edit_message_text(chat_id=CHAT_ID, message_id=call.message.message_id, text="Пыщь")
-        bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="Пыщь!")
-        """

@@ -8,13 +8,13 @@
         <div class="verification-body">
             <h1>ПОДТВЕРЖДЕНИЕ</h1>
             <div id="buyer-and-bill-container" class="buyer-information-and-bill-container">
-                <router-link to="../" class="ver-links" title="редактировать заказ">
+                <router-link to="../" class="ver-links" v-if="showResult === 'No'" title="редактировать заказ">
                     <img class="back-link" src="@/assets/arrow-right.png">
                 </router-link>
-                <router-link to="/gallery" class="ver-links" title="отменить заказ">
+                <router-link to="/gallery" class="ver-links" v-if="showResult === 'No'" title="отменить заказ">
                     <img class="close-link" src="@/assets/close-img.png">
                 </router-link>
-                <div class="buyer-information"  v-if="showResult === 'No'">
+                <div class="buyer-information"  v-if="showResult === 'No'"> <!-- TODO fix it! -->
                     <p>Имя и фамилия:
                         <label>{{postBody.full_name = $route.params.full_name}}</label>
                     </p>
@@ -51,7 +51,7 @@
 
                 </div>
 
-                <div class="bill"  v-if="showResult === 'No'">
+                <div class="bill"  v-if="showResult === 'No'"> <!-- TODO fix it! -->
                     <p class="itogo">ИТОГО</p>
                     <p class="order-count"> 1 заказ </p>
                     <p class="second-price"><b>Стоимость доставки зависит от перевозчика.</b></p>
@@ -62,7 +62,7 @@
                     _______________________________
 
                     <div class="mini-description">Мы свяжемся с вами посредством {{postBody.keep_in_touch}} в течении 2 дней.</div>
-                    <button class="verification-button" v-on:click="postPost" s>ПОДТВЕРДИТЬ ЗАКАЗ</button>
+                    <button class="verification-button" v-on:click="postPost">ПОДТВЕРДИТЬ ЗАКАЗ</button>
                 </div>
 
                 <div class="result"  v-if="showResult === 'Yes'">
@@ -99,7 +99,6 @@
                     city: '',
                     telephone_number: '',
                     nickname: '',
-
                     keep_in_touch: '',
                     receive: '',
                     post_office: '',
@@ -181,38 +180,39 @@
 
     .itogo{
         text-align: center;
-        font: lighter 20pt Yu Gothic;
+        font: lighter 1em Yu Gothic ;
     }
 
     .verification-button{
         width: 85%;
         left: 20px;
         background-color: #ccfed9;
-        height: 50px;
-        margin-bottom: 60px;
+        height: 30px;
         box-shadow: 0 3px 6px rgb(222, 222, 222);
         padding: 0;
+        margin-top: 30px;
         border: none;
         text-align: center;
-        font: 15pt Yu Gothic UI;
+        font: 1em Yu Gothic UI;
         color: #7EBB97;
     }
 
     .bill{
-        text-align: center;
-        position: relative;
+        position: absolute;
         display: inline-block;
         top: 0;
-        width: 34%;
-        height: 100%;
-        margin: 0;
+        bottom: 0;
+        width: 35%;
+        height: 70%;
+        margin-top: 100px;
         padding: 20px 10px;
+        text-align: center;
         background-color: #F5F5F5;
         box-shadow: 0 0 10px #D1D1D1;
     }
 
     label{
-        font: bold 15pt Yu Gothic UI;
+        font: bold 1em Yu Gothic UI;
     }
 
     p{
@@ -222,11 +222,11 @@
     .buyer-information{
         position: relative;
         display: inline-block;
-        top: 5%;
+        top: 0;
         left: 0;
         height: 100%;
-        width: 55%;
-        margin-right: 50px;
+        width: 60%;
+        margin-right: 30px;
     }
 
     .buyer-information-and-bill-container{
@@ -235,15 +235,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 50px;
         box-shadow: 0 0 10px #D1D1D1;
     }
 
-    .verification-body{
-        position: absolute;
-        right: 400px;
-        left: 300px;
-        top: 100px;
-        bottom: 100px;
-    }
 </style>

@@ -32,6 +32,9 @@ class Picture(models.Model):
     def __str__(self):
         return self.Title
 
+    class Meta:
+        ordering = ['Title']
+
 
 # 2
 class photoGallery(models.Model):
@@ -102,11 +105,13 @@ class Methodical(models.Model):
 class Press(models.Model):
     Name = models.CharField(max_length=100, help_text="Название")
     Preview = models.ImageField(
-        upload_to='C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/pics/preview')
+        upload_to='C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/pics/preview',
+        help_text="Фото на превью")
     Author = models.CharField(max_length=200, help_text="ФИО автора")
-    CreationDate = models.DateField(blank=True, default="0000-00-00")
+    CreationDate = models.DateField(blank=True, default="0000-00-00", help_text="Дата публикации")
     Path = models.FileField(
-        upload_to='C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/files')
+        upload_to='C:/Users/LENOVO/Desktop/main/GitHub/diploma2019-2020/frontend/src/assets/files',
+        help_text="Файл с каталогом")
 
     def __str__(self):
         return self.Name

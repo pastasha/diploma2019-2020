@@ -1,5 +1,5 @@
 <template>
-    <div class="big-body" id="app">
+    <div id="app">
         <NavItems></NavItems>
 
         <div class="body">
@@ -15,9 +15,9 @@
             <div class="container-for-content">
                 <div class="content-e">
                 <div v-for="exhibition in exhibitions" :key="exhibition.id">
-                    <div class="exhibition">
-                        <img class="exhibition-preview" v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(121))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
-                        <div class="exhibition-description">
+                    <div class="content">
+                        <img v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(121))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
+                        <div class="content-description">
                             <h4>{{exhibition.Name}}</h4>
                             <p>{{exhibition.CreationDate}}</p>
                             <p>{{exhibition.Place}}</p>
@@ -27,10 +27,10 @@
                             Куратор:
                             <p>{{exhibition.Curator}}</p>
 
-                            <div class="file-container-e">
-                                <img class="file" src="@/assets/read.png" title="читать каталог онлайн">
-                                <img class="file" src="@/assets/download.png" title="скачать каталог">
-                            </div>
+                            <!--<div class="files">
+                                <img src="@/assets/read.png" title="читать каталог онлайн">
+                                <img src="@/assets/download.png" title="скачать каталог">
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -82,52 +82,52 @@
         margin-bottom: 50px;
     }
 
-    .exhibition-description{
-        position: absolute;
-        display: inline-block;
-        width: 500px;
-        height: 450px;
-        right: -10px;
-        top: 0;
-        text-align: center;
-        line-height: 2;
-        margin: 30px;
+    .files{
+        border: solid aqua 1px;
     }
 
-    p{
-        font: lighter 15pt Yu Gothic UI;
-    }
-
-    .exhibition-preview{
-        position: relative;
-        display: inline-block;
-        margin: 30px;
-    }
-
-    .file-container-e{
-        position: absolute;
-        left: 130px;
-        bottom: 0;
-    }
-
-    .file{
-        position: relative;
+    .files img{
         height: 50px;
         width: 50px;
-        margin-left: 50px;
     }
 
-    .exhibition{
-        display: grid;
-        left: 290px;
-        right: 250px;
-        top: 10%;
-        bottom: 0;
-        width: 1000px;
-        height: 500px;
-        box-shadow: 0 0 15px #bdbdbd;
+    .content{
         position: relative;
+        display: grid;
+        left: 270px;
+        right: 250px;
+        top: 0;
+        bottom: 0;
+        height: 400px;
+        width: 700px;
+        box-shadow: 0 0 15px #bdbdbd;
     }
+
+    .content img{
+        position: absolute;
+        display: inline-block;
+        width: 60%;
+        height: 100%;
+    }
+
+    .content-description{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 60%;
+        padding-top: 6%;
+        padding-left: 2%;
+        padding-right: 2%;
+        text-align: center;
+        line-height: 2;
+        vertical-align: middle;
+    }
+
+    .content-description p{
+        font: lighter 100% Yu Gothic UI;
+    }
+
 
     .filter-by-year{
         position: absolute;

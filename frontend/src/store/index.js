@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Note } from '../api/notes'
-import { Methodical } from "../api/methodical-works";
-import { Diplomas } from "../api/diplomas";
-import { Exhibitions } from '../api/exhibitions'
-import { Press } from "../api/press";
+import { Note, Methodical, Diplomas,
+    Exhibitions, Press, diplomaPhotos,
+    galleryPhotos, Comment } from '../api/common'
 import { SET_NOTES,
 SET_METHODICAL,
 SET_DIPLOMAS,
 SET_EXHIBITIONS,
-SET_PRESS}
+SET_PRESS,
+SET_DIPLOMA_PHOTOS,
+SET_GALLERY_PHOTOS,
+SET_COMMENTS}
 from './mutation-types.js'
 
 Vue.use(Vuex);
@@ -20,7 +21,10 @@ const state = {
     methodical: [],
     diplomas: [],
     exhibitions: [],
-    press: []  // список заметок
+    press: [],
+    diploma_photos: [],
+    gallery_photos: [],
+    comments: []// список заметок
 };
 // Геттеры
 const getters = {
@@ -28,7 +32,10 @@ const getters = {
     methodical: state => state.methodical,
     diplomas: state => state.diplomas,
     exhibitions: state => state.exhibitions,
-    press: state => state.press// получаем список заметок из состояния
+    press: state => state.press,
+    diploma_photos: state => state.diploma_photos,
+    gallery_photos: state => state.gallery_photos,
+    comments: state => state.comments// получаем список заметок из состояния
 };
 // Мутации
 const mutations = {
@@ -47,6 +54,15 @@ const mutations = {
     },
     [SET_PRESS] (state, { press }) {
         state.press = press
+    },
+    [SET_GALLERY_PHOTOS] (state, { gallery_photos }) {
+        state.gallery_photos = gallery_photos
+    },
+    [SET_DIPLOMA_PHOTOS] (state, { diploma_photos }) {
+        state.diploma_photos = diploma_photos
+    },
+    [SET_COMMENTS] (state, { comments }) {
+        state.comments = comments
     }
 };
 
@@ -75,6 +91,21 @@ const actions = {
     getPress ({ commit }) {
         Press.list().then(press => {
             commit(SET_PRESS, { press })
+        })
+    },
+    getDiplomaPhotos ({ commit }) {
+        diplomaPhotos.list().then(diploma_photos => {
+            commit(SET_DIPLOMA_PHOTOS, { diploma_photos })
+        })
+    },
+    getGalleryPhotos ({ commit }) {
+        galleryPhotos.list().then(gallery_photos => {
+            commit(SET_GALLERY_PHOTOS, { gallery_photos })
+        })
+    },
+    getComments ({ commit }) {
+        Comment.list().then(comments => {
+            commit(SET_COMMENTS, { comments })
         })
     }
 };

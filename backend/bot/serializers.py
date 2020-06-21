@@ -14,4 +14,4 @@ class order(serializers.ModelSerializer):
 class comment(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('picture_id', 'full_name', 'email_or_phone', 'comment', 'datetime')
+        fields = '__all__'

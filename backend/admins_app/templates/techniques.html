@@ -1,5 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Техники</h1>
+
+    <div class="content">
+        <h1>Список техник</h1>
+        {% if techniques %}
+        <ul>
+
+          {% for technique in techniques %}
+
+           <div class="list-item">
+               <a class="item-title" href="{% url 'technique-update' technique.pk %}">{{ technique.name }}</a>
+                <a href="{% url 'technique-update' technique.pk %}"><img class="update-link" src="../static/img/update.png"></a>
+                <a href="{% url 'technique-delete' technique.pk %}"><img class="delete-link" src="../static/img/delete.png"></a>
+            </div>
+
+          {% endfor %}
+
+        </ul>
+        {% else %}
+          <p>В архиве нет техник.</p>
+        {% endif %}
+    </div>
 {% endblock %}
