@@ -60,11 +60,20 @@ def comment_form(request):
             print("--There are errors in comment form--")
             print(form.errors)
 
-        message = "НОВЫЙ КОММЕНТАРИЙ\n\nКантина: %s\nИмя и фамилия: %s\nОбратная связь: %s\n" \
-                  "Комментарий: %s\n\n" \
-                  "Посетите панель администратора: http://127.0.0.1:8000/comments/" \
-                  % (data["picture_id"], data["full_name"], data["email_or_phone"],
-                     data["comment"])
+        message = ''
+
+        if "picture_id" in data:
+            message = "НОВЫЙ КОММЕНТАРИЙ К КАРТИНЕ\n\nКантина: %s\nИмя и фамилия: %s\nОбратная связь: %s\n" \
+                      "Комментарий: %s\n\n" \
+                      "Посетите панель администратора: http://127.0.0.1:8000/comments/" \
+                      % (data["picture_id"], data["full_name"], data["email_or_phone"],
+                         data["comment"])
+        else:
+            message = "НОВЫЙ КОММЕНТАРИЙ АВТОРУ\n\nИмя и фамилия: %s\nОбратная связь: %s\n" \
+                      "Комментарий: %s\n\n" \
+                      "Посетите панель администратора: http://127.0.0.1:8000/comments/" \
+                      % (data["full_name"], data["email_or_phone"],
+                         data["comment"])
 
         json_data = {
             "chat_id": '322095460',

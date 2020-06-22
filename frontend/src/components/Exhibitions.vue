@@ -16,7 +16,7 @@
                 <div class="content-e">
                 <div v-for="exhibition in exhibitions" :key="exhibition.id">
                     <div class="content">
-                        <img v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(121))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
+                        <img v-bind:src="require('@/assets/pics/preview/' + exhibition.Preview.slice(125))" :alt="exhibition.Preview.slice(125)" width="440" height="440">
                         <div class="content-description">
                             <h4>{{exhibition.Name}}</h4>
                             <p>{{exhibition.CreationDate}}</p>

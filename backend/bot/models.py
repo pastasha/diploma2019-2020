@@ -53,7 +53,7 @@ class Comment(models.Model):
     email_or_phone = models.CharField(max_length=100, help_text="Электронная почта или номер телефона")
     comment = models.CharField(max_length=600, help_text="Комментарий")
     datetime = models.DateTimeField(default=timezone.now, blank=True, null=True, help_text="Дата публикации")
-    picture_id = models.CharField(max_length=100, help_text="Картина")
+    picture_id = models.CharField(max_length=100, help_text="Картина", blank=True)
     is_confirm = models.BooleanField(default=False)
 
     def __str__(self):

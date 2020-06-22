@@ -6,7 +6,6 @@ from django.views import generic
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.decorators.csrf import csrf_protect
 
-
 from catalog.models import Picture, Diploma, Exhibition, \
     Methodical, Technique, Press
 from bot.models import Order, Comment
@@ -44,7 +43,7 @@ class PicturesListView(generic.ListView):
 class PictureCreate(CreateView):
     model = Picture
     fields = ('Title', 'Preview', 'CreationDate', 'IdTechnique', 'SizeHeight',
-                  'SizeWidth', 'Materials', 'Description', 'status', 'Price')
+              'SizeWidth', 'Materials', 'Description', 'status', 'Price')
     context_object_name = 'picture_form'
     template_name = 'picture_form.html'
 
@@ -55,7 +54,7 @@ class PictureCreate(CreateView):
 class PictureUpdate(UpdateView):
     model = Picture
     fields = ('Title', 'Preview', 'CreationDate', 'IdTechnique', 'SizeHeight',
-                  'SizeWidth', 'Materials', 'Description', 'status', 'Price')
+              'SizeWidth', 'Materials', 'Description', 'status', 'Price')
     context_object_name = 'picture_update'
     template_name = 'picture_update.html'
 
@@ -194,12 +193,6 @@ class TechniqueDelete(DeleteView):
 # ----------------- PRESSES ----------------- #
 
 
-class PressDetailView(generic.DetailView):
-    model = Press
-    context_object_name = 'press'
-    template_name = 'press_detail.html'
-
-
 class PressListView(generic.ListView):
     model = Press
     context_object_name = 'presses'
@@ -209,8 +202,11 @@ class PressListView(generic.ListView):
 class PressCreate(CreateView):
     model = Press
     fields = '__all__'
-    context_object_name = 'diploma_form'
-    template_name = 'diploma_form.html'
+    context_object_name = 'press_form'
+    template_name = 'press_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('presses')
 
 
 class PressUpdate(UpdateView):
@@ -229,16 +225,47 @@ class PressDelete(DeleteView):
     context_object_name = 'press_delete'
     template_name = 'press_delete.html'
 
+    def get_success_url(self):
+        return reverse_lazy('presses')
+
 
 # ----------------- METHODICALS ----------------- #
 
 
-def methodicals(request):
-    return render(
-        request,
-        'methodicals.html',
-        context={},
-    )
+class MethodicalListView(generic.ListView):
+    model = Methodical
+    context_object_name = 'methodicals'
+    template_name = 'methodicals.html'
+
+
+class MethodicalCreate(CreateView):
+    model = Methodical
+    fields = '__all__'
+    context_object_name = 'methodical_form'
+    template_name = 'methodical_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('methodicals')
+
+
+class MethodicalUpdate(UpdateView):
+    model = Methodical
+    fields = '__all__'
+    context_object_name = 'methodical_update'
+    template_name = 'methodical_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('methodicals')
+
+
+class MethodicalDelete(DeleteView):
+    model = Methodical
+    success_url = reverse_lazy('methodicals')
+    context_object_name = 'methodical_delete'
+    template_name = 'methodical_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('methodicals')
 
 
 # ----------------- ORDERS ----------------- #
@@ -314,6 +341,7 @@ class OrdersListView(generic.ListView):
     template_name = 'orders.html'
     paginate_by = 10
 
+
 # ----------------- COMMENTS ----------------- #
 
 
@@ -374,4 +402,3 @@ class CommentsListView(generic.ListView):
     context_object_name = 'comments'
     template_name = 'comments.html'
     paginate_by = 10
-

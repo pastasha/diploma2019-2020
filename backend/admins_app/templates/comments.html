@@ -9,6 +9,7 @@
 
       {% for comment in comments %}
 
+       <p id="is_conf" class="is_conf">❶</p>
        <div class="list-item" id="list-item">
             <a class="item-title" href="{% url 'comment-detail' comment.pk %}">{{ comment.full_name }}</a>
             <a class="item-date" href="{% url 'comment-detail' comment.pk %}">{{ comment.datetime }}</a>
@@ -24,13 +25,21 @@
     </div>
 
 <script language="JavaScript" type="text/javascript">
+    $('#is_conf').hide();
     $(document).ready(function(){
-        console.log($('#comment_confirm').val());
-        if ($('#comment_confirm').val() === "True"){
-            $('#list-item').css('background', 'white');
-        }
-        if ($('#comment_confirm').val() === "False"){
-            $('#list-item').css('background', '#f5f5f5');
+        let cards = $('.comment-confirm');
+        for (let i = 0; i < cards.length; i++) {
+            let card = cards[i];
+
+            let confs = $('.is_conf');
+            if (card.value === "True"){
+                // confs[i].hide();
+                confs[i].style.display = "none";
+            }
+            if (card.value === "False"){
+                // confs[i].show();
+                confs[i].style.display = "block";
+            }
         }
     });
 </script>

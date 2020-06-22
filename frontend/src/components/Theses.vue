@@ -14,12 +14,12 @@
 
             <div class="container-for-content">
                 <div v-for="diploma in diplomas" :key="diploma.id">
-                    <div class="content" v-bind:style="{ height: heightSize }">
+                    <div class="t-content" v-bind:style="{ height: heightSize }">
 
                         <div class="container-for-diploma-photos">
                             <img v-on:click="showDescription"
                                  v-if="active === false"
-                                 v-bind:src="require('@/assets/pics/preview/' + diploma.Preview.slice(118))"
+                                 v-bind:src="require('@/assets/pics/preview/' + diploma.Preview.slice(122))"
                                  :alt="diploma.Preview.slice(125)" width="440" height="440">
 
                             <div class="photos-and-video" v-if="active === true">
@@ -138,6 +138,11 @@
         height: 100%;
     }
 
+    .container-for-diploma-photos img{
+        width: 400px;
+        height: 400px;
+    }
+
     .photos{
         position: relative;
         display: grid;
@@ -169,4 +174,18 @@
         top: 20%;
         bottom: 0;
     }
+
+    .t-content{
+        position: relative;
+        display: grid;
+        left: 270px;
+        right: 250px;
+        top: 0;
+        bottom: 0;
+        height: 700px;
+        width: 700px;
+        box-shadow: 0 0 15px #bdbdbd;
+        margin-bottom: 100px;
+    }
+
 </style>

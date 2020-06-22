@@ -30,6 +30,10 @@ urlpatterns = [
     url(r'press/(?P<pk>\d+)/update/$', views.PressUpdate.as_view(), name='press-update'),
     url(r'press/(?P<pk>\d+)/delete/$', views.PressDelete.as_view(), name='press-delete'),
 
+    path('methodical-form/', views.MethodicalCreate.as_view(), name='methodical-form'),
+    path('methodicals/', views.MethodicalListView.as_view(), name='methodicals'),
+    url(r'methodical/(?P<pk>\d+)/update/$', views.MethodicalUpdate.as_view(), name='methodical-update'),
+    url(r'methodical/(?P<pk>\d+)/delete/$', views.MethodicalDelete.as_view(), name='methodical-delete'),
 
     path('orders', views.OrdersListView.as_view(), name='orders'),
     url(r'^order/(?P<pk>\d+)$', views.OrderDetailView.as_view(), name='order-detail'),
