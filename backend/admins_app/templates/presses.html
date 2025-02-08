@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Список прессы</h1>
+    <div class="content">
+    {% if presses %}
+    <ul>
+
+      {% for press in presses %}
+
+       <div class="list-item">
+           <a class="item-title" href="{% url 'press-update' press.pk %}">{{ press.Name }}</a>
+            <a href="{% url 'press-update' press.pk %}"><img class="update-link" src="../static/img/update.png"></a>
+            <a href="{% url 'press-delete' press.pk %}"><img class="delete-link" src="../static/img/delete.png"></a>
+        </div>
+
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В архиве нет публикаций об авторе.</p>
+    {% endif %}
+    </div>
+{% endblock %}

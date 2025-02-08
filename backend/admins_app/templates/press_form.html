@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="content">
+    <h1>Добавление новой публикации</h1>
+    <form action="" method="POST" class="contact-details-container">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input class="submit-button" type="submit" value="Сохранить" />
+    </form>
+</div>
+{% endblock %}

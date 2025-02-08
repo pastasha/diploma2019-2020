@@ -1,0 +1,78 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% csrf_token %}
+
+  <h1>Заказ №{{ order.id }}</h1>
+  <div class="content">
+    <p><strong>Заказчик:</strong> {{order.full_name}}</p>
+    <p><strong>Страна:</strong> {{order.country}}</p>
+    <p><strong>Город:</strong> {{order.city}} </p>
+    <p><strong>Номер телефона:</strong> {{order.telephone_number}}</p>
+    <p><strong>Никнейм:</strong> {{order.nickname}} </p>
+    <p><strong>Способ продолжения связи:</strong> {{order.keep_in_touch}} </p>
+    <p><strong>Способ получения:</strong> {{order.receive}} </p>
+    <p><strong>Почтовое отделение:</strong> {{order.post_office}}</p>
+    <p><strong>Адрес:</strong> {{order.address}} </p>
+    <p><strong>Способ оплаты:</strong> {{order.payment}}</p>
+    <p><strong>Сумма заказа:</strong> {{order.total_amount}} </p>
+    <p><strong>Комментарий:</strong> {{order.comment}} </p>
+    <p><strong>Картина:</strong> {{order.picture_with_price_list}} </p>
+    <p><strong>Дата оформления заказа:</strong> {{order.datetime}}</p>
+
+    <div id="buttons" class="buttons-container">
+      <a href="" id="confirm-btn"><img src="../static/img/confirm.png"></a>
+      <a href="" id="ban-btn"><img src="../static/img/ban.png"></a>
+    </div>
+
+    <div class="is_confirm" id="is_confirm">
+      КАРТИНА ПРОДАНА
+    </div>
+  </div>
+  <input id="order_id" value="{{ order.id }}">
+  <input id="order_status" value="{{ order.is_confirm }}">
+
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+      $('#order_id').hide();
+      $('#order_status').hide();
+      $('#is_confirm').hide();
+
+      if ($('#order_status').val() === "True"){
+        $('#is_confirm').show();
+        $('#buttons').hide();
+      }
+
+        $('#confirm-btn').click(function(e){
+            e.preventDefault();
+            alert("Картина продана.");
+            data = {
+              "state": "confirm",
+              "order_id": $('#order_id').val()
+            };
+            SentAjax(data);
+            return false;
+        });
+
+        $('#ban-btn').click(function(e){
+            e.preventDefault();
+            alert("Заказ удален.");
+            data = {
+              "state": "ban",
+              "order_id": $('#order_id').val()
+            };
+            SentAjax(data);
+            return false;
+        });
+
+        function SentAjax($data) {
+            $.ajax({
+                url: '/order-processing/',
+                type: 'POST',
+                data: {'state': $data, 'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()},
+            });
+        }
+    })
+</script>
+{% endblock %}

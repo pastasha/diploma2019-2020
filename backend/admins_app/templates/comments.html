@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div class="content">
+
+    <h1>Список комментариев</h1>
+    {% if comments %}
+    <ul>
+
+      {% for comment in comments %}
+
+       <p id="is_conf" class="is_conf">❶</p>
+       <div class="list-item" id="list-item">
+            <a class="item-title" href="{% url 'comment-detail' comment.pk %}">{{ comment.full_name }}</a>
+            <a class="item-date" href="{% url 'comment-detail' comment.pk %}">{{ comment.datetime }}</a>
+            <input class="comment-confirm" id="comment_confirm" value="{{ comment.is_confirm }}">
+        </div>
+
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В архиве нет комментариев.</p>
+    {% endif %}
+    </div>
+
+<script language="JavaScript" type="text/javascript">
+    $('#is_conf').hide();
+    $(document).ready(function(){
+        let cards = $('.comment-confirm');
+        for (let i = 0; i < cards.length; i++) {
+            let card = cards[i];
+
+            let confs = $('.is_conf');
+            if (card.value === "True"){
+                // confs[i].hide();
+                confs[i].style.display = "none";
+            }
+            if (card.value === "False"){
+                // confs[i].show();
+                confs[i].style.display = "block";
+            }
+        }
+    });
+</script>
+{% endblock %}

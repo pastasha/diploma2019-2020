@@ -1,0 +1,295 @@
+.container-fluid{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 15%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin-right: 30px;
+    padding-top: 60px;
+    padding-right: 30px;
+    background: rgba(33, 73, 179, 0.55);
+    list-style: none;
+    box-shadow: 0 0 6px #c0c0c0;
+}
+
+.nav-bar li{
+    margin-bottom: 10%;
+}
+
+.nav-bar li a{
+    color: white;
+    font:bolder 1.5em Yu Gothic UI;
+    text-decoration: none;
+}
+
+.add-link{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.dynamic-content{
+    position: absolute;
+    height: 100%;
+    width: 65%;
+    top: 0;
+    right: 0;
+    left: 10%;
+    list-style: none;
+    padding-top: 50px;
+    padding-left: 250px;
+}
+
+h1{
+    margin-bottom: 50px;
+    color: #000000;
+    font: bold 2em Yu Gothic;
+    text-align: center;
+}
+
+form{
+    margin-bottom: 30px;
+    right: 0;
+    padding: 5px 40px 15px;
+}
+
+input{
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    box-shadow: 0 0 6px #D1D1D1;
+    border: none;
+    font: 13pt Yu Gothic UI;
+    color: #302f38;
+}
+
+.list-item{
+    height: 50px;
+    width: 80%;
+    margin-bottom: 50px;
+    background-color: white;
+    box-shadow: 0 0 6px #c0c0c0;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 30px;
+}
+
+.index-list-item{
+    height: 50px;
+    width: 80%;
+    margin-bottom: 50px;
+    background-color: white;
+    box-shadow: 0 0 6px #c0c0c0;
+    padding-left: 50px;
+    padding-right: 30px;
+}
+
+
+.content{
+    position: absolute;
+    padding-left: 80px;
+    list-style: none;
+    width: 87%;
+}
+
+.item-title{
+    color: #5c5b5a;
+    font: 1.7em Yu Gothic UI;
+    text-decoration: none;
+}
+
+.index-item-title{
+    color: #5c5b5a;
+    font: 1.7em Yu Gothic UI;
+    text-decoration: none;
+}
+
+.item-date{
+    position: absolute;
+    right: 180px;
+    color: #898886;
+    font: 1.7em Yu Gothic UI;
+    text-decoration: none;
+}
+
+.img-link-container{
+    position: absolute;
+    top: 30px;
+    right: 15.5%;
+    z-index: 999999;
+}
+
+.logo-link{
+    height: 100%;
+    width: 100%;
+}
+
+.update-link{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 22%;
+    margin-top: 6px;
+}
+
+.delete-link{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 17%;
+    margin-top: 6px;
+}
+
+.index-add-link{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+}
+
+.errorlist{
+    color: rgba(186, 0, 20, 0.76);
+    font: 1em Yu Gothic UI;
+    list-style: none;
+}
+
+label{
+    color: #3d3c3c;
+    font: 1.3em Yu Gothic UI;
+    list-style: none;
+    text-align: right;
+    margin-right: 30px;
+}
+
+span{
+    margin-top: -60px;
+    color: #8c8989;
+    font: 1em Yu Gothic UI;
+    list-style: none;
+}
+
+table{
+    position: absolute;
+    text-align: left;
+    width: 70%;
+}
+
+.submit-button{
+    position: absolute;
+    bottom: 0;
+}
+
+p{
+    color: #6c6969;
+    font: 1em Yu Gothic UI;
+}
+
+.buttons-container img{
+    margin-top: 60px;
+    margin-left: 300px;
+    height: 50px;
+    width: 50px;
+}
+
+.not_confirm{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: 15%;
+    margin-top: 6px;
+}
+
+.comment-confirm{
+    opacity: 0;
+}
+
+.is_confirm{
+    position: absolute;
+    background-color: #d7ffbc;
+    border: solid 2px #46c068;
+    left: 33%;
+    margin-top: 20px;
+    color: #46c068;
+    font: 1em Yu Gothic UI;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+form table{
+    position: relative;
+    height: 100%;
+    border-spacing: 7px 50px;
+}
+
+form input{
+    position: relative;
+    bottom: 0;
+    background-color: #a1efa7;
+    color: #6ca171;
+}
+
+form table input{
+    background-color: white;
+    color: #302f38;
+    padding: 4px 10px;
+    font: 1.2em Yu Gothic UI;
+}
+
+th{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    color: #302f38;
+}
+
+td{
+    color: #302f38;
+    font: 1em Yu Gothic UI;
+}
+
+td a{
+    color: #4f7da9;
+    font: 1em Yu Gothic UI;
+    text-decoration: none;
+}
+
+#id_Path{
+    box-shadow: none;
+    padding-left: 0;
+}
+
+#id_Preview{
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.submit-button{
+    position: relative;
+    background-color: #a1efa7;
+    color: #6ca171;
+}
+
+tbody {
+    width: 700px;
+}
+
+.is_conf{
+    color: darkred;
+    font: 1.5em Yu Gothic UI;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+}

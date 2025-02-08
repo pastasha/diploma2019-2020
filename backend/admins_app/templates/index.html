@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Главная страница</h1>
+
+  <div class="content">
+
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Картины:</strong> {{ num_pictures }}</span>
+          <a href="{% url 'picture-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Дипломные работы:</strong> {{ num_diplomas }}</span>
+          <a href="{% url 'diploma-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Выставки:</strong> {{ num_exhibition }}</span>
+          <a href="{% url 'exhibition-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Техники:</strong> {{ num_technique }}</span>
+          <a href="{% url 'technique-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Пресса:</strong> {{ num_methodical }}</span>
+          <a href="{% url 'press-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+      <div class="index-list-item">
+          <span class="index-item-title"><strong>Методические разработки:</strong> {{ num_press }}</span>
+          <a href="{% url 'methodical-form' %}"><img class="index-add-link" src="../static/img/add.png"></a>
+      </div>
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+export const SET_NOTES = 'SET_NOTES';
+export const SET_METHODICAL = 'SET_METHODICAL';
+export const SET_DIPLOMAS = 'SET_DIPLOMAS';
+export const SET_EXHIBITIONS = 'SET_EXHIBITIONS';
+export const SET_PRESS = 'SET_PRESS';
+export const SET_DIPLOMA_PHOTOS = 'SET_DIPLOMA_PHOTOS';
+export const SET_GALLERY_PHOTOS = 'SET_GALLERY_PHOTOS';
+export const SET_COMMENTS = 'SET_COMMENTS';
+
